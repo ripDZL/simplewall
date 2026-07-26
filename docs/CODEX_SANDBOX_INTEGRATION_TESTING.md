@@ -1,0 +1,34 @@
+# Codex Sandbox Integration Testing
+
+## Baseline gate
+
+- [ ] Clean Release x64 builds before fork changes.
+- [ ] Clean Release ARM64 builds before fork changes.
+- [ ] Existing profile load/save and non-Codex filters behave unchanged.
+
+## Policy matrix
+
+- [ ] Approved root plus valid Codex ancestry is allowed.
+- [ ] Same filename outside approved root is blocked.
+- [ ] Approved root plus unrelated parent is blocked.
+- [ ] Codex ancestry plus path outside approved root is blocked.
+- [ ] Junction/symlink escape is blocked.
+- [ ] PID reuse does not inherit a decision.
+- [ ] Exit removes the process rule.
+- [ ] Timeout removes the process rule.
+- [ ] Restart removes stale generated rules.
+- [ ] Disable immediately prevents new generated rules.
+- [ ] IPv4 and IPv6 both work.
+- [ ] TCP and UDP controls are independent.
+- [ ] Inbound traffic remains blocked.
+- [ ] Windows 10 and Windows 11 are exercised.
+
+## Diagnostics
+
+- [ ] Log contains required identity, policy, WFP, and endpoint fields.
+- [ ] Log contains no environment values, secrets, file contents, or command output.
+- [ ] Dry-run produces decisions without adding WFP permit filters.
+
+## Repeatable evidence
+
+- Record build command, OS build, architecture, simplewall commit, pinned routine commit, settings, generated filter GUIDs, and cleanup result.
