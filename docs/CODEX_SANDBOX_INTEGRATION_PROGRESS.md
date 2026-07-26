@@ -44,14 +44,15 @@
 ## Diagnostic implementation
 
 - Default: disabled.
-- Scope: simplewall-owned blocked outbound events only.
+- Scope: simplewall-owned blocked outbound events associated by an explicit diagnostic SID or approved canonical root.
 - Output: `%USERPROFILE%\simplewall-codex-audit.log` by default.
-- Captures: observed/final path, WFP layer/filter/tuple, username/SID, signer/status, SHA-256.
+- Captures: WFP/validated/final paths, event type, layer/filter/tuple, username/SID, signer/status, and SHA-256.
 - PID correlation: exact tuple plus image path, token SID, and creation-time validation.
 - Ambiguous or stale PID matches are logged as unavailable rather than guessed.
-- Parent chain is bounded to eight entries.
-- Command-line argument count is retained; all argument values are redacted.
+- Parent chain is bounded to eight entries and each ancestor is creation-time checked against the process snapshot.
+- Allowlisted non-secret command-line flag names are retained; all other arguments and option values are redacted.
 - Configured roots are environment-expanded, opened by handle, final-path compared, boundary checked, and ADS rejected.
+- Hash/signature evidence is collected only for a validated live process and is explicitly labeled as on-disk evidence at audit time, not kernel-bound evidence.
 - The module contains no permit action or WFP filter-creation call.
 
 ## Diagnostic configuration
@@ -60,11 +61,14 @@ Add under `[simplewall]` in `simplewall.ini` while simplewall is stopped:
 
 ```ini
 IsCodexDiagnosticEnabled=true
+CodexDiagnosticSids=S-1-5-21-577596116-3012514165-3244883643-1006
 CodexSandboxRoots=%USERPROFILE%\.codex;C:\path\to\approved\workspace
 CodexDiagnosticLogPath=%USERPROFILE%\simplewall-codex-audit.log
 ```
 
+- Replace the SID with the explicitly confirmed Codex sandbox SID.
 - Replace the workspace example with explicit approved roots.
+- At least one SID or root must match; otherwise diagnostic mode remains inert.
 - Restart simplewall after editing.
 - This mode observes only; it does not allow traffic.
 

@@ -7,4 +7,5 @@
 - Pinned dependencies: `routine a5479438`, `builder 74d1faba`.
 - Build override: VS 2022 `v143`; Release x64 and ARM64 pass with zero warnings.
 - Diagnostic-only blocked-event audit is implemented and disabled by default.
+- Diagnostic records require explicit SID/root association and never create permit filters.
 - Enforcement remains blocked pending user confirmation of the discovered SID.

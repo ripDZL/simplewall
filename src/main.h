@@ -274,6 +274,7 @@ typedef struct _ITEM_LOG
 	LONG64 timestamp;
 
 	UINT64 filter_id;
+	UINT32 event_type;
 
 	ULONG app_hash;
 
@@ -537,6 +538,7 @@ typedef struct _ITEM_LOG_CALLBACK
 
 	FWP_IP_VERSION version;
 
+	UINT32 event_type;
 	UINT32 direction;
 	UINT32 flags;
 	UINT16 remote_port;

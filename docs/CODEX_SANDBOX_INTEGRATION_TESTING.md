@@ -27,10 +27,14 @@
 
 - [x] Static check: module contains required identity, WFP, and endpoint fields.
 - [x] Static check: module contains no permit/filter-creation calls.
-- [x] Command-line argument values are always redacted.
+- [x] Command-line output retains only allowlisted flag names; positional, unknown, and option values are redacted.
 - [x] PID reuse guard rejects processes created after the WFP event.
+- [x] Parent-chain capture creation-time validates every opened ancestor.
 - [x] Ambiguous PID matches are rejected.
 - [x] Root matching checks canonical boundary and rejects ADS.
+- [x] Events require an explicit diagnostic SID or approved canonical root association.
+- [x] Hash/signature evidence requires a validated live process path.
+- [x] Raw WFP event type is retained.
 - [ ] Dry-run produces decisions without adding WFP permit filters.
 - [ ] Live audit output verified with the modified build.
 

@@ -673,6 +673,7 @@ VOID CALLBACK _wfp_logcallback (
 
 	ptr_log->direction = (FWP_DIRECTION)log->direction;
 	ptr_log->filter_id = log->filter_id;
+	ptr_log->event_type = log->event_type;
 
 	ptr_log->is_myprovider = is_myprovider;
 
@@ -698,6 +699,7 @@ FORCEINLINE BOOLEAN log_struct_to_f (
 		case WINDOWS_10_RS5:
 		{
 			const FWPM_NET_EVENT5 *evt = (const FWPM_NET_EVENT5*)event_data;
+			log->event_type = evt->type;
 
 			if (evt->type == FWPM_NET_EVENT_TYPE_CLASSIFY_DROP && evt->classifyDrop)
 			{
@@ -814,6 +816,7 @@ FORCEINLINE BOOLEAN log_struct_to_f (
 		case WINDOWS_10_RS4:
 		{
 			const FWPM_NET_EVENT4 *evt = (const FWPM_NET_EVENT4*)event_data;
+			log->event_type = evt->type;
 
 			if (evt->type == FWPM_NET_EVENT_TYPE_CLASSIFY_DROP && evt->classifyDrop)
 			{
@@ -930,6 +933,7 @@ FORCEINLINE BOOLEAN log_struct_to_f (
 		case WINDOWS_10_TH1:
 		{
 			const FWPM_NET_EVENT3 *evt = (const FWPM_NET_EVENT3*)event_data;
+			log->event_type = evt->type;
 
 			if (evt->type == FWPM_NET_EVENT_TYPE_CLASSIFY_DROP && evt->classifyDrop)
 			{
@@ -1046,6 +1050,7 @@ FORCEINLINE BOOLEAN log_struct_to_f (
 		case WINDOWS_8:
 		{
 			const FWPM_NET_EVENT2 *evt = (const FWPM_NET_EVENT2*)event_data;
+			log->event_type = evt->type;
 
 			if (evt->type == FWPM_NET_EVENT_TYPE_CLASSIFY_DROP && evt->classifyDrop)
 			{
@@ -1162,6 +1167,7 @@ FORCEINLINE BOOLEAN log_struct_to_f (
 		case WINDOWS_7:
 		{
 			const FWPM_NET_EVENT1 *evt = (const FWPM_NET_EVENT1*)event_data;
+			log->event_type = evt->type;
 
 			if (evt->type == FWPM_NET_EVENT_TYPE_CLASSIFY_DROP && evt->classifyDrop)
 			{

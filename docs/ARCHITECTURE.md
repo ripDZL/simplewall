@@ -10,9 +10,11 @@
 - Notifications: `_app_logthread` creates missing app records, saves the profile, and queues blocked-app notifications.
 - Process data: network monitor resolves active-connection PID to image path or AppContainer SID.
 - Existing trust data: WinVerifyTrust/catalog signer checks and SHA-256 file hashes.
-- Missing for Codex policy: blocked-event PID, raw user SID, parent chain, command line, process creation time, canonical final path, reparse-point containment, process-start subscription, PID-reuse binding, and temporary-rule registry.
+- Missing for Codex enforcement: direct blocked-event PID binding, process-start subscription, reparse-point containment enforcement, and temporary-rule registry.
 - Build compatibility: `src/routine_compat.h` adapts current simplewall call shapes to the pinned public `routine`; it must remain free of WFP/policy decisions.
 - Dependency layout: build inputs live under `third_party/routine` and `third_party/builder`.
 - Diagnostic module: `src/codex.c` consumes blocked outbound events only and has no WFP filter-creation calls.
 - PID correlation: exact network tuple, image path, token SID, and process creation time must all validate; ambiguous matches are rejected.
+- Diagnostic association: a configured Codex SID or approved canonical root must match before detailed audit evidence is captured.
+- Parent-chain and command-line enrichment occurs only after association; ancestor PIDs are creation-time validated.
 - Root classification: configured roots and executables are opened and compared by final canonical handle path with boundary and ADS checks.

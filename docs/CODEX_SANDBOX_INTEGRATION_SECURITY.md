@@ -35,5 +35,8 @@
 - Exact-path filters do not bind file content unless hash checks are also enforced.
 - WFP blocked-event records do not include PID; diagnostic PID correlation can fail after short-lived attempts.
 - UDP remote endpoints are not present in the owner table, so ambiguous local-endpoint matches are rejected.
-- Diagnostic command-line argument values are always redacted to avoid recording credentials or prompt content.
-- Diagnostic hashing/signature checks add work on the serialized log queue and are intended only for temporary discovery.
+- Diagnostic command lines retain only allowlisted non-secret flag names; positional, unknown, and option values are always redacted.
+- Diagnostics ignore events that match neither an explicit Codex diagnostic SID nor an approved canonical root.
+- Hash/signature checks run only after validated process correlation and Codex association.
+- File hash/signature results describe the on-disk executable at audit time; WFP does not kernel-bind the event to that opened handle.
+- Even creation-time-validated user-mode correlation can miss short-lived processes or race later file replacement.
