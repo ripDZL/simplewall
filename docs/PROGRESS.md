@@ -16,3 +16,6 @@
 - 2026-07-26: cmd, PowerShell, Python, and Node all reported the dedicated `CodexSandboxOffline` SID.
 - 2026-07-26: security review restricted diagnostics to explicit SID/root associations, creation-time validated ancestor PIDs, and labeled on-disk evidence from validated live paths.
 - 2026-07-26: stopped before SID enforcement pending explicit user confirmation and live modified-build capture.
+- 2026-07-26: investigated reported `0xC0000005`; local WER events showed `AUDIODG.EXE`/`Clear.vst3`, no simplewall crash dump/event.
+- 2026-07-26: hardened diagnostics against missing WFP path/SID evidence and empty audit buffers.
+- 2026-07-26: post-hardening static checks and Release x64/ARM64 builds pass with zero warnings.

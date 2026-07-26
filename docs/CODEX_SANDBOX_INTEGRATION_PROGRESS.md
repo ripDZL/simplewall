@@ -48,12 +48,22 @@
 - Output: `%USERPROFILE%\simplewall-codex-audit.log` by default.
 - Captures: WFP/validated/final paths, event type, layer/filter/tuple, username/SID, signer/status, and SHA-256.
 - PID correlation: exact tuple plus image path, token SID, and creation-time validation.
+- PID correlation now requires WFP path and SID evidence before scanning live connection tables.
 - Ambiguous or stale PID matches are logged as unavailable rather than guessed.
 - Parent chain is bounded to eight entries and each ancestor is creation-time checked against the process snapshot.
 - Allowlisted non-secret command-line flag names are retained; all other arguments and option values are redacted.
 - Configured roots are environment-expanded, opened by handle, final-path compared, boundary checked, and ADS rejected.
 - Hash/signature evidence is collected only for a validated live process and is explicitly labeled as on-disk evidence at audit time, not kernel-bound evidence.
 - The module contains no permit action or WFP filter-creation call.
+- Audit writes no-op if the formatted audit record is empty.
+
+## Crash triage
+
+- Reported status: `0xC0000005`.
+- Local Application WER events in the last 24 hours: `AUDIODG.EXE` and `Clear.vst3`; no `simplewall.exe`.
+- Local crash dumps: no `simplewall.exe` dump found.
+- Running simplewall process detected, but elevated path inspection was denied.
+- Defensive hardening added without changing firewall policy.
 
 ## Diagnostic configuration
 

@@ -34,6 +34,8 @@
 - [x] Root matching checks canonical boundary and rejects ADS.
 - [x] Events require an explicit diagnostic SID or approved canonical root association.
 - [x] Hash/signature evidence requires a validated live process path.
+- [x] PID correlation requires WFP path and SID evidence.
+- [x] Audit writer skips empty formatted records.
 - [x] Raw WFP event type is retained.
 - [ ] Dry-run produces decisions without adding WFP permit filters.
 - [ ] Live audit output verified with the modified build.
@@ -47,4 +49,6 @@
 - `tests\codex_diagnostic_checks.ps1`: passed.
 - Release x64 `/p:PlatformToolset=v143`: passed, zero warnings.
 - Release ARM64 `/p:PlatformToolset=v143`: passed, zero warnings.
+- Post-crash-hardening Release x64 `/p:PlatformToolset=v143`: passed, zero warnings.
+- Post-crash-hardening Release ARM64 `/p:PlatformToolset=v143`: passed, zero warnings.
 - cmd, PowerShell, Python, and Node SID probes: same dedicated sandbox SID.

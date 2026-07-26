@@ -612,6 +612,10 @@ static BOOLEAN _app_codex_getprocessidentity (
 	NTSTATUS status;
 
 	RtlSecureZeroMemory (identity, sizeof (CODEX_PROCESS_IDENTITY));
+
+	if (_r_obj_isstringempty (ptr_log->path) || _r_obj_isstringempty (ptr_log->user_sid))
+		return FALSE;
+
 	identity->process_id = _app_codex_resolvepid (ptr_log, &identity->is_ambiguous);
 
 	if (!identity->process_id || identity->is_ambiguous)
@@ -635,7 +639,6 @@ static BOOLEAN _app_codex_getprocessidentity (
 	if (
 		!NT_SUCCESS (status) ||
 		_r_obj_isstringempty (process_path) ||
-		_r_obj_isstringempty (ptr_log->path) ||
 		!_r_str_isequal (&process_path->sr, &ptr_log->path->sr, TRUE)
 	)
 	{
@@ -681,7 +684,6 @@ static BOOLEAN _app_codex_getprocessidentity (
 
 	if (
 		!NT_SUCCESS (status) ||
-		_r_obj_isstringempty (ptr_log->user_sid) ||
 		!_r_str_isequal (&process_sid->sr, &ptr_log->user_sid->sr, TRUE)
 	)
 	{
@@ -1017,6 +1019,9 @@ static VOID _app_codex_writeaudit (
 	HANDLE hfile;
 	LONG64 file_size;
 	NTSTATUS status;
+
+	if (_r_obj_isstringempty (buffer))
+		return;
 
 	audit_path = _r_config_getstringexpand (
 		L"CodexDiagnosticLogPath",
