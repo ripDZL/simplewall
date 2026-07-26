@@ -3,6 +3,9 @@
 - [x] Pin public `routine` and `builder` dependencies in-repo.
 - [x] Add policy-neutral adapters for the last public `routine` API.
 - [x] Pass clean Release x64 and ARM64 builds with VS 2022/v143.
-- [ ] Add diagnostic-only blocked-event identity capture.
+- [x] Add diagnostic-only blocked-event identity capture.
+- [x] Add no-permit audit logging before enforcement.
+- [x] Validate the sandbox SID across cmd, PowerShell, Python, and Node.
 - [ ] Validate the sandbox SID through diagnostic output and user confirmation.
-- [ ] Add no-permit audit logging before any enforcement.
+- [ ] Runtime-test the modified diagnostic build after the installed simplewall instance is stopped.
+- [ ] Add disabled-by-default SID-mode UI and persistence only after SID confirmation.

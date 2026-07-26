@@ -13,3 +13,6 @@
 - Missing for Codex policy: blocked-event PID, raw user SID, parent chain, command line, process creation time, canonical final path, reparse-point containment, process-start subscription, PID-reuse binding, and temporary-rule registry.
 - Build compatibility: `src/routine_compat.h` adapts current simplewall call shapes to the pinned public `routine`; it must remain free of WFP/policy decisions.
 - Dependency layout: build inputs live under `third_party/routine` and `third_party/builder`.
+- Diagnostic module: `src/codex.c` consumes blocked outbound events only and has no WFP filter-creation calls.
+- PID correlation: exact network tuple, image path, token SID, and process creation time must all validate; ambiguous matches are rejected.
+- Root classification: configured roots and executables are opened and compared by final canonical handle path with boundary and ADS checks.

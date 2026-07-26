@@ -25,10 +25,22 @@
 
 ## Diagnostics
 
-- [ ] Log contains required identity, policy, WFP, and endpoint fields.
-- [ ] Log contains no environment values, secrets, file contents, or command output.
+- [x] Static check: module contains required identity, WFP, and endpoint fields.
+- [x] Static check: module contains no permit/filter-creation calls.
+- [x] Command-line argument values are always redacted.
+- [x] PID reuse guard rejects processes created after the WFP event.
+- [x] Ambiguous PID matches are rejected.
+- [x] Root matching checks canonical boundary and rejects ADS.
 - [ ] Dry-run produces decisions without adding WFP permit filters.
+- [ ] Live audit output verified with the modified build.
 
 ## Repeatable evidence
 
 - Record build command, OS build, architecture, simplewall commit, pinned routine commit, settings, generated filter GUIDs, and cleanup result.
+
+## Commands run
+
+- `tests\codex_diagnostic_checks.ps1`: passed.
+- Release x64 `/p:PlatformToolset=v143`: passed, zero warnings.
+- Release ARM64 `/p:PlatformToolset=v143`: passed, zero warnings.
+- cmd, PowerShell, Python, and Node SID probes: same dedicated sandbox SID.

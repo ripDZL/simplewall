@@ -88,6 +88,9 @@ VOID NTAPI _app_dereferencelog (
 	if (ptr_item->username)
 		_r_obj_dereference (ptr_item->username);
 
+	if (ptr_item->user_sid)
+		_r_obj_dereference (ptr_item->user_sid);
+
 	if (ptr_item->path)
 		_r_obj_dereference (ptr_item->path);
 }

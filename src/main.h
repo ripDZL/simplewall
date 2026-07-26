@@ -81,6 +81,7 @@ typedef enum _ENUM_INFO_DATA2
 } ENUM_INFO_DATA2;
 
 #define LOG_PATH_DEFAULT L"%USERPROFILE%\\" APP_NAME_SHORT L".csv"
+#define CODEX_AUDIT_PATH_DEFAULT L"%USERPROFILE%\\" APP_NAME_SHORT L"-codex-audit.log"
 #define LOG_VIEWER_DEFAULT L"%SystemRoot%\\notepad.exe"
 #define LOG_SIZE_LIMIT_DEFAULT _r_calc_kilobytes2bytes (1)
 
@@ -262,6 +263,7 @@ typedef struct _ITEM_LOG
 	PR_STRING filter_name;
 	PR_STRING layer_name;
 	PR_STRING username;
+	PR_STRING user_sid;
 	PR_STRING path;
 
 	volatile PR_STRING remote_addr_str;

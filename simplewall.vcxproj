@@ -378,6 +378,7 @@
   <ItemGroup>
     <ClCompile Include="third_party\routine\src\rapp.c" />
     <ClCompile Include="third_party\routine\src\routine.c" />
+    <ClCompile Include="src\codex.c" />
     <ClCompile Include="src\controls.c" />
     <ClCompile Include="src\db.c" />
     <ClCompile Include="src\editor.c" />
@@ -405,6 +406,7 @@
     <ClInclude Include="third_party\routine\src\routine.h" />
     <ClInclude Include="third_party\routine\src\rtypes.h" />
     <ClInclude Include="src\app.h" />
+    <ClInclude Include="src\codex.h" />
     <ClInclude Include="src\controls.h" />
     <ClInclude Include="src\db.h" />
     <ClInclude Include="src\editor.h" />

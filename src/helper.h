@@ -140,6 +140,21 @@ VOID _app_getfilesignatureinfo (
 	_In_ HANDLE hfile
 );
 
+LONG _app_verifyfromfile (
+	_In_ ULONG union_choice,
+	_In_ PVOID union_data,
+	_In_ LPGUID action_id,
+	_In_opt_ PVOID policy_callback,
+	_Out_ PR_STRING_PTR signature_string
+);
+
+NTSTATUS _app_verifyfilefromcatalog (
+	_In_ HANDLE hfile,
+	_In_ LPCWSTR path,
+	_In_opt_ LPCWSTR algorithm_id,
+	_Out_ PR_STRING_PTR signature_string
+);
+
 VOID _app_getfileversioninfo (
 	_Inout_ PITEM_APP_INFO ptr_app_info
 );

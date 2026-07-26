@@ -6,4 +6,5 @@
 - Baseline gate passed with a policy-neutral compatibility shim.
 - Pinned dependencies: `routine a5479438`, `builder 74d1faba`.
 - Build override: VS 2022 `v143`; Release x64 and ARM64 pass with zero warnings.
-- No Codex integration source code has been implemented.
+- Diagnostic-only blocked-event audit is implemented and disabled by default.
+- Enforcement remains blocked pending user confirmation of the discovered SID.

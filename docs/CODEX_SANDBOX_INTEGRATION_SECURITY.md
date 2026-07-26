@@ -33,3 +33,7 @@
 - User-mode process monitoring can miss events during startup or service interruption.
 - Signatures authenticate publishers, not runtime intent.
 - Exact-path filters do not bind file content unless hash checks are also enforced.
+- WFP blocked-event records do not include PID; diagnostic PID correlation can fail after short-lived attempts.
+- UDP remote endpoints are not present in the owner table, so ambiguous local-endpoint matches are rejected.
+- Diagnostic command-line argument values are always redacted to avoid recording credentials or prompt content.
+- Diagnostic hashing/signature checks add work on the serialized log queue and are intended only for temporary discovery.

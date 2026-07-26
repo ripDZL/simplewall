@@ -101,6 +101,7 @@ DECLSPEC_SELECTANY const LONG64 timer_array[] =
 #define WM_NOTIFICATION (WM_APP + 21)
 
 #include "controls.h"
+#include "codex.h"
 #include "db.h"
 #include "editor.h"
 #include "helper.h"

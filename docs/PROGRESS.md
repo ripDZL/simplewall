@@ -11,3 +11,7 @@
 - 2026-07-26: pinned `routine a5479438` and `builder 74d1faba` as internal submodules.
 - 2026-07-26: added a localized API-shape compatibility header; no WFP policy changes.
 - 2026-07-26: Release x64 and ARM64 rebuilds pass with zero warnings.
+- 2026-07-26: added disabled-by-default diagnostic audit; it creates no WFP permit filters.
+- 2026-07-26: audit captures WFP identity/tuple data, canonical path, SID, signer, hash, and validated PID metadata when correlation is unique.
+- 2026-07-26: cmd, PowerShell, Python, and Node all reported the dedicated `CodexSandboxOffline` SID.
+- 2026-07-26: stopped before SID enforcement pending explicit user confirmation and live modified-build capture.

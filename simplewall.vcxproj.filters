@@ -72,12 +72,18 @@
     <ClCompile Include="third_party\routine\src\routine.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\codex.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="src\uwp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\main.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\codex.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\resource.h">

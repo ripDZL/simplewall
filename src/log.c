@@ -605,7 +605,10 @@ VOID CALLBACK _wfp_logcallback (
 
 	// get username information
 	if ((log->flags & FWPM_NET_EVENT_FLAG_USER_ID_SET) == FWPM_NET_EVENT_FLAG_USER_ID_SET && log->user_id)
+	{
 		_r_sys_getusername (&ptr_log->username, log->user_id, TRUE);
+		_r_str_fromsid (&ptr_log->user_sid, log->user_id);
+	}
 
 	// destination
 	if ((log->flags & FWPM_NET_EVENT_FLAG_IP_VERSION_SET) == FWPM_NET_EVENT_FLAG_IP_VERSION_SET)
@@ -1329,7 +1332,7 @@ VOID NTAPI _app_logthread (
 	PITEM_APP ptr_app = NULL;
 	PITEM_LOG ptr_log;
 	HWND hwnd;
-	BOOLEAN is_exludeallow, is_exludeblocklist, is_exludestealth, is_logenabled, is_loguienabled, is_notexist, is_notificationenabled, is_silent = FALSE;
+	BOOLEAN is_codexdiagnosticenabled, is_exludeallow, is_exludeblocklist, is_exludestealth, is_logenabled, is_loguienabled, is_notexist, is_notificationenabled, is_silent = FALSE;
 
 	hwnd = _r_app_gethwnd ();
 
@@ -1359,15 +1362,19 @@ VOID NTAPI _app_logthread (
 	is_notificationenabled = _r_config_getboolean (L"IsNotificationsEnabled", TRUE, NULL);
 	is_loguienabled = _r_config_getboolean (L"IsLogUiEnabled", FALSE, NULL);
 	is_logenabled = _r_config_getboolean (L"IsLogEnabled", FALSE, NULL);
+	is_codexdiagnosticenabled = _r_config_getboolean (L"IsCodexDiagnosticEnabled", FALSE, NULL);
 	is_exludeallow = !(ptr_log->is_allow && _r_config_getboolean (L"IsExcludeClassifyAllow", TRUE, NULL));
 	is_exludestealth = !(ptr_log->is_system && _r_config_getboolean (L"IsExcludeStealth", TRUE, NULL));
 	is_exludeblocklist = !(ptr_log->is_blocklist && _r_config_getboolean (L"IsExcludeBlocklist", TRUE, NULL)) && !(ptr_log->is_custom && _r_config_getboolean (L"IsExcludeCustomRules", TRUE, NULL));
 
-	if ((is_logenabled || is_loguienabled || is_notificationenabled) && is_exludestealth && is_exludeallow)
+	if ((is_logenabled || is_loguienabled || is_notificationenabled || is_codexdiagnosticenabled) && is_exludestealth && is_exludeallow)
 	{
 		// get network string
 		ptr_log->remote_addr_str = _app_formataddress (ptr_log->af, ptr_log->protocol, &ptr_log->remote_addr, 0, 0);
 		ptr_log->local_addr_str = _app_formataddress (ptr_log->af, ptr_log->protocol, &ptr_log->local_addr, 0, 0);
+
+		// Diagnostic-only capture. This function never creates permit filters.
+		_app_codex_auditblocked (ptr_log);
 
 		// display notification
 		if (ptr_log->is_myprovider && !ptr_log->is_allow && is_notificationenabled && ptr_app && is_exludeblocklist)
