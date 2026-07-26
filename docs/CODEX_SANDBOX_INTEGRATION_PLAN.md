@@ -2,8 +2,8 @@
 
 ## Gate
 
-- Do not implement until clean Release x64 and ARM64 baseline builds pass.
-- Pin or otherwise record the exact compatible `routine` revision first.
+- Passed: clean Release x64 and ARM64 builds with pinned public dependencies.
+- Compatibility layer is policy-neutral and isolated in `src/routine_compat.h`.
 
 ## Phase 1: diagnostic-only proof
 

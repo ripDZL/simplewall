@@ -1,7 +1,9 @@
 # Session Summary
 
 - Inspected upstream architecture and build system.
-- Baseline source remained unmodified.
-- Baseline build blocked by an unpinned incompatible `routine` dependency.
+- Converted external sibling dependencies to pinned in-repo submodules.
+- Added a narrow compatibility layer for the last public `routine`.
+- Release x64 and ARM64 rebuild cleanly with zero warnings using v143.
+- No Codex permit/filter behavior has been added.
 - Current Codex shell reports a dedicated `CodexSandboxOffline` SID; this is preliminary evidence only.
-- Next session must establish a reproducible baseline before implementation.
+- Next milestone: diagnostic-only identity capture and audit output.

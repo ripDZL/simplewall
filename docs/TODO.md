@@ -1,8 +1,8 @@
 # TODO
 
-- [ ] Obtain the exact `routine` revision used to build simplewall commit `0b5bd95`.
-- [ ] Obtain VS 2026/v145 or confirm v143 override is an accepted baseline.
-- [ ] Re-run clean Release x64 and ARM64 baseline builds.
-- [ ] Resume `CODEX_SANDBOX_INTEGRATION_PLAN.md` only after both builds pass.
+- [x] Pin public `routine` and `builder` dependencies in-repo.
+- [x] Add policy-neutral adapters for the last public `routine` API.
+- [x] Pass clean Release x64 and ARM64 builds with VS 2022/v143.
+- [ ] Add diagnostic-only blocked-event identity capture.
 - [ ] Validate the sandbox SID through diagnostic output and user confirmation.
-- [ ] Implement diagnostic-only mode before any automatic permit filters.
+- [ ] Add no-permit audit logging before any enforcement.

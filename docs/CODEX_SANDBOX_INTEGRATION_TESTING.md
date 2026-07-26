@@ -2,8 +2,8 @@
 
 ## Baseline gate
 
-- [ ] Clean Release x64 builds before fork changes.
-- [ ] Clean Release ARM64 builds before fork changes.
+- [x] Clean Release x64 compatibility baseline: zero warnings.
+- [x] Clean Release ARM64 compatibility baseline: zero warnings.
 - [ ] Existing profile load/save and non-Codex filters behave unchanged.
 
 ## Policy matrix

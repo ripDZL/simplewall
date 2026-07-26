@@ -2,25 +2,24 @@
 
 ## Status
 
-- State: blocked at unmodified baseline build.
-- Feature source changes: none.
+- State: baseline-compatible builds passed; diagnostic phase active.
+- Feature source changes: none; build compatibility only.
 - Upstream simplewall: `0b5bd95ee6c125c2233210703cc975d406fc1d83`.
-- Public routine master: `a54794384855d749b592e7bc05204855f3ef966e`.
+- Pinned routine: `a54794384855d749b592e7bc05204855f3ef966e`.
+- Pinned builder: `74d1faba0a75feda417313909c96b256fae7e79f`.
 
 ## Baseline
 
 - NuGet restore: passed.
-- Release x64 with `/p:PlatformToolset=v143`: failed during compilation.
-- ARM64: not attempted after x64 failed.
-- Required upstream v145 toolset is not installed; VS 2022/v143 is installed.
-- Failure is not a Codex fork regression.
+- Release x64 with `/p:PlatformToolset=v143`: passed, zero warnings.
+- Release ARM64 with `/p:PlatformToolset=v143`: passed, zero warnings.
+- Public dependencies are internal submodules under `third_party`.
 
-## Blocker evidence
+## Compatibility resolution
 
-- `.gitmodules` names `../routine` but the simplewall commit contains no Git link or pinned dependency revision.
-- Current simplewall calls older three-argument configuration APIs and other older routine signatures.
-- Current public routine master exposes incompatible signatures.
-- Representative errors: `_r_config_getboolean` argument count, `_r_obj_addlistitem` argument count, `_r_theme_initialize` argument count, and missing `PCR_STRINGREF`.
+- Upstream did not pin the private SDK revision used for the release source.
+- `src/routine_compat.h` maps API names, parameter order, and equivalent Win32 helpers to the last public SDK.
+- The shim changes no WFP conditions, filter weights, direction, persistence, or default policy.
 
 ## Architecture findings
 
@@ -38,6 +37,7 @@
 - Observed SID: `S-1-5-21-577596116-3012514165-3244883643-1006`.
 - Treat as a dedicated-SID candidate only; it is not yet user-confirmed or validated across Codex process types.
 
-## Resume condition
+## Next
 
-- Supply or identify the exact compatible `routine` revision and complete clean x64/ARM64 baseline builds.
+- Add diagnostic-only identity capture.
+- Do not add automatic permit filters until identity evidence is captured and reviewed.

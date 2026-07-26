@@ -25,6 +25,7 @@
 
 #include "app.h"
 #include "rapp.h"
+#include "routine_compat.h"
 #include "main.h"
 
 #include "resource.h"

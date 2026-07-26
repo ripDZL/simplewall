@@ -1110,7 +1110,7 @@ PR_STRING _app_getfilehashinfo (
 )
 {
 	PITEM_APP ptr_app;
-	PR_STRING string;
+	PR_STRING string = NULL;
 
 	ptr_app = _app_getappitem (app_hash);
 

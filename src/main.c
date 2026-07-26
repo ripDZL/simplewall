@@ -1777,7 +1777,7 @@ VOID _app_initialize (
 
 	_app_profile_initialize ();
 
-	config.my_path = _r_obj_createstring2 (_r_sys_getimagepath ());
+	config.my_path = _r_obj_createstring (_r_sys_getimagepath ());
 
 	config.svchost_path = _r_obj_concatstringrefs (
 		2,
@@ -1943,7 +1943,7 @@ INT_PTR CALLBACK DlgProc (
 			{
 				_r_str_fromlong64 (internal_profile_version, RTL_NUMBER_OF (internal_profile_version), profile_info.profile_internal_timestamp);
 
-				_r_update_addcomponent (L"Internal rules", L"rules_internal", internal_profile_version, &profile_info.profile_path_internal->sr, FALSE);
+				_r_update_addcomponent (L"Internal rules", L"rules_internal", internal_profile_version, profile_info.profile_path_internal, FALSE);
 			}
 
 			_app_network_initialize (hwnd);
@@ -1999,7 +1999,7 @@ INT_PTR CALLBACK DlgProc (
 			_r_obj_clearhashtable (rules_config);
 			_r_queuedlock_releaseexclusive (&lock_rules_config);
 
-			_r_path_makebackup (&profile_info.profile_path->sr, TRUE);
+			_r_path_makebackup (profile_info.profile_path, TRUE);
 
 			_app_profile_initialize ();
 			_app_profile_load (hwnd, NULL);

@@ -1,7 +1,6 @@
-[submodule "routine"]
-	path = ../routine
+[submodule "third_party/routine"]
+	path = third_party/routine
 	url = https://github.com/henrypp/routine.git
-
-[submodule "builder"]
-	path = ../builder
+[submodule "third_party/builder"]
+	path = third_party/builder
 	url = https://github.com/henrypp/builder.git
