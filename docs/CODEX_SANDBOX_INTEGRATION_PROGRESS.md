@@ -19,6 +19,8 @@
 
 - Upstream did not pin the private SDK revision used for the release source.
 - `src/routine_compat.h` maps API names, parameter order, and equivalent Win32 helpers to the last public SDK.
+- Dump `simplewall-1785224020.dmp` exposed a missing `_r_res_queryversion` argument-order adapter.
+- The adapter keeps simplewall's source call shape while invoking the pinned public `routine` API safely.
 - The shim changes no WFP conditions, filter weights, direction, persistence, or default policy.
 
 ## Architecture findings
@@ -64,6 +66,8 @@
 - Local crash dumps: no `simplewall.exe` dump found.
 - Running simplewall process detected, but elevated path inspection was denied.
 - Defensive hardening added without changing firewall policy.
+- User-provided dump root cause: file-version metadata worker called `_r_res_queryversion` through a missing compatibility adapter.
+- Fix: add `_r_res_queryversion(out_buffer, ver_block)` adapter to `src/routine_compat.h`.
 
 ## Diagnostic configuration
 

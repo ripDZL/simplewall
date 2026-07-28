@@ -19,3 +19,6 @@
 - 2026-07-26: investigated reported `0xC0000005`; local WER events showed `AUDIODG.EXE`/`Clear.vst3`, no simplewall crash dump/event.
 - 2026-07-26: hardened diagnostics against missing WFP path/SID evidence and empty audit buffers.
 - 2026-07-26: post-hardening static checks and Release x64/ARM64 builds pass with zero warnings.
+- 2026-07-28: analyzed `simplewall-1785224020.dmp`; crash was `_r_res_queryversion` argument order through the compatibility gap, not Codex policy code.
+- 2026-07-28: added `_r_res_queryversion` compatibility adapter and static regression check.
+- 2026-07-28: compatibility/Codex static checks and Release x64/ARM64 builds pass with zero warnings.

@@ -156,6 +156,9 @@ FORCEINLINE ULONG _r_compat_str_gethash_raw (
 #define _r_res_loadresource(out_buffer, hinst, type, name, lang_id) \
 	_r_res_loadresource ((hinst), (type), (name), (lang_id), (out_buffer))
 
+#define _r_res_queryversion(out_buffer, ver_block) \
+	_r_res_queryversion ((ver_block), (out_buffer))
+
 #define _r_crypt_getfilehash(out_buffer, algorithm_id, path, hfile) \
 	_r_crypt_getfilehash ((algorithm_id), (path), (hfile), (out_buffer))
 

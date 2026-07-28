@@ -4,6 +4,7 @@
 
 - [x] Clean Release x64 compatibility baseline: zero warnings.
 - [x] Clean Release ARM64 compatibility baseline: zero warnings.
+- [x] Static compatibility check: `_r_res_queryversion` argument order is adapted.
 - [ ] Existing profile load/save and non-Codex filters behave unchanged.
 
 ## Policy matrix
@@ -51,4 +52,7 @@
 - Release ARM64 `/p:PlatformToolset=v143`: passed, zero warnings.
 - Post-crash-hardening Release x64 `/p:PlatformToolset=v143`: passed, zero warnings.
 - Post-crash-hardening Release ARM64 `/p:PlatformToolset=v143`: passed, zero warnings.
+- `tests\compatibility_checks.ps1`: passed.
+- Post-dump-fix Release x64 `/p:PlatformToolset=v143`: passed, zero warnings.
+- Post-dump-fix Release ARM64 `/p:PlatformToolset=v143`: passed, zero warnings.
 - cmd, PowerShell, Python, and Node SID probes: same dedicated sandbox SID.
