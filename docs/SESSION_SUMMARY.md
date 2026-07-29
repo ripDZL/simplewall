@@ -12,6 +12,9 @@
 - User-provided dump confirmed a simplewall crash in file-version metadata collection.
 - Root cause: missing `_r_res_queryversion` argument-order adapter for the pinned public `routine` SDK.
 - Added adapter and static compatibility check; x64/ARM64 builds pass.
+- Connections tab empty-state report traced to active network rows using null checker values after pre-tab discovery.
+- Active network rows now keep a safe path marker so existing rows can materialize in the Connections list.
+- Added network monitor static check; compatibility/Codex/network checks and x64/ARM64 builds pass.
 - cmd, PowerShell, Python, and Node report the same dedicated `CodexSandboxOffline` SID.
 - OpenAI-signed `codex-command-runner-0.144.2.exe` is present in the observed parent chain.
 - Installed upstream simplewall is running; live fork audit capture was not attempted.
