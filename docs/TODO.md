@@ -9,5 +9,6 @@
 - [x] Fix tab-selection compatibility for saved/current Connections tab visibility.
 - [ ] Validate the sandbox SID through diagnostic output and user confirmation.
 - [ ] Runtime-test the Connections tab with the new beta build.
+- [ ] Collect `%USERPROFILE%\simplewall-network-diagnostic.log` from the diagnostic beta if Connections remains empty.
 - [ ] Runtime-test the modified diagnostic build after the installed simplewall instance is stopped.
 - [ ] Add disabled-by-default SID-mode UI and persistence only after SID confirmation.

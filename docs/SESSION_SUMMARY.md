@@ -16,6 +16,10 @@
 - Root cause: `_r_tab_selectitem` compatibility macro bypassed `TCN_SELCHANGING`/`TCN_SELCHANGE`, so saved tab selection could leave the selected page hidden.
 - Fix uses the routine tab helper and restores original network monitor active-row semantics.
 - Regression guard, Codex diagnostics check, and Release x64/ARM64 builds pass.
+- User confirmed the empty Connections tab also reproduced on beta before switching back to upstream.
+- Added disabled-by-default network monitor diagnostics for table API status/counts, path-resolution drops, and listview insert counts.
+- Network diagnostics are evidence-only and do not change filters, rules, SID handling, or WFP policy.
+- Compatibility, Codex, and network diagnostic static checks pass; Release x64/ARM64 builds pass.
 - cmd, PowerShell, Python, and Node report the same dedicated `CodexSandboxOffline` SID.
 - OpenAI-signed `codex-command-runner-0.144.2.exe` is present in the observed parent chain.
 - Installed upstream simplewall is running; live fork audit capture was not attempted.

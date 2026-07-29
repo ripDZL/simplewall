@@ -26,3 +26,6 @@
 - 2026-07-29: fixed `_r_tab_selectitem` compatibility so programmatic tab selection sends tab-change notifications and shows the selected page.
 - 2026-07-29: restored original network monitor active-row refresh semantics to avoid duplicate connection rows.
 - 2026-07-29: compatibility/Codex static checks and Release x64/ARM64 builds pass with zero warnings.
+- 2026-07-29: user confirmed the empty Connections tab also reproduced on the beta before switching back to upstream.
+- 2026-07-29: added disabled-by-default network-monitor diagnostics for thread start, Windows network table statuses/counts, path-resolution drops, and listview insert counts.
+- 2026-07-29: compatibility/Codex/network diagnostic static checks and Release x64/ARM64 builds pass.

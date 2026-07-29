@@ -9,3 +9,4 @@
 - Diagnostic-only blocked-event audit is implemented and disabled by default.
 - Diagnostic records require explicit SID/root association and never create permit filters.
 - Enforcement remains blocked pending user confirmation of the discovered SID.
+- Network-monitor diagnostic logging is disabled by default and only records API/listview counts and status codes.
