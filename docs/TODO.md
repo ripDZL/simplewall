@@ -6,7 +6,7 @@
 - [x] Add diagnostic-only blocked-event identity capture.
 - [x] Add no-permit audit logging before enforcement.
 - [x] Validate the sandbox SID across cmd, PowerShell, Python, and Node.
-- [x] Fix Connections tab row materialization for already-discovered network rows.
+- [x] Fix tab-selection compatibility for saved/current Connections tab visibility.
 - [ ] Validate the sandbox SID through diagnostic output and user confirmation.
 - [ ] Runtime-test the Connections tab with the new beta build.
 - [ ] Runtime-test the modified diagnostic build after the installed simplewall instance is stopped.

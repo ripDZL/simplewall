@@ -22,6 +22,7 @@
 - 2026-07-28: analyzed `simplewall-1785224020.dmp`; crash was `_r_res_queryversion` argument order through the compatibility gap, not Codex policy code.
 - 2026-07-28: added `_r_res_queryversion` compatibility adapter and static regression check.
 - 2026-07-28: compatibility/Codex static checks and Release x64/ARM64 builds pass with zero warnings.
-- 2026-07-29: fixed Connections tab materialization for network rows discovered before the tab is opened.
-- 2026-07-29: added network monitor static regression check.
-- 2026-07-29: compatibility/Codex/network static checks and Release x64/ARM64 builds pass with zero warnings.
+- 2026-07-29: initial Connections-tab network-row materialization hypothesis was superseded after user retest.
+- 2026-07-29: fixed `_r_tab_selectitem` compatibility so programmatic tab selection sends tab-change notifications and shows the selected page.
+- 2026-07-29: restored original network monitor active-row refresh semantics to avoid duplicate connection rows.
+- 2026-07-29: compatibility/Codex static checks and Release x64/ARM64 builds pass with zero warnings.

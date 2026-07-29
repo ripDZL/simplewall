@@ -209,9 +209,6 @@ FORCEINLINE ULONG _r_compat_str_gethash_raw (
 #define _r_edit_setselection(hwnd, ctrl_id, start_pos, end_pos) \
 	((VOID)_r_wnd_sendmessage ((hwnd), (ctrl_id), EM_SETSEL, (start_pos), (end_pos)))
 
-#define _r_tab_selectitem(hwnd, ctrl_id, item_id) \
-	((INT)_r_wnd_sendmessage ((hwnd), (ctrl_id), TCM_SETCURSEL, (item_id), 0))
-
 #define _r_path_getbasename2(path) PathFindFileNameW (path)
 #define _r_path_getdrivenumber(path) PathGetDriveNumberW ((path)->buffer)
 #define _r_path_isnetwork(path) PathIsNetworkPathW ((path)->buffer)

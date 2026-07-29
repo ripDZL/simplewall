@@ -476,7 +476,11 @@ BOOLEAN _app_settab_id (
 		tab_context = _app_listview_getcontext (hwnd, i);
 
 		if (tab_context && tab_context->listview_id == page_id)
-			return (_r_tab_selectitem (hwnd, IDC_TAB, i) != INT_ERROR);
+		{
+			_r_tab_selectitem (hwnd, IDC_TAB, i);
+
+			return TRUE;
+		}
 	}
 
 	if (page_id != IDC_APPS_PROFILE)

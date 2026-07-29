@@ -132,27 +132,6 @@ PITEM_NETWORK_CONTEXT _app_network_getcontext ()
 	return network_context;
 }
 
-VOID _app_network_addcheckeritem (
-	_Inout_ PITEM_NETWORK_CONTEXT network_context,
-	_In_ ULONG network_hash,
-	_In_opt_ PR_STRING path
-)
-{
-	PR_STRING path_ref;
-
-	path_ref = (PR_STRING)_r_obj_referencesafe (path);
-
-	if (!path_ref)
-		path_ref = _r_obj_referenceemptystring ();
-
-	_r_queuedlock_acquireexclusive (&network_context->lock_checker);
-
-	if (!_r_obj_addhashtablepointer (network_context->checker_ptr, network_hash, path_ref))
-		_r_obj_dereference (path_ref);
-
-	_r_queuedlock_releaseexclusive (&network_context->lock_checker);
-}
-
 VOID _app_network_initialize (
 	_In_ HWND hwnd
 )
@@ -253,7 +232,9 @@ VOID _app_network_generatetable (
 				{
 					_app_network_update_tcp4_stats (ptr_network, &tcp4_table->table[i]);
 
-					_app_network_addcheckeritem (network_context, network_hash, ptr_network->path);
+					_r_queuedlock_acquireexclusive (&network_context->lock_checker);
+					_r_obj_addhashtablepointer (network_context->checker_ptr, network_hash, NULL);
+					_r_queuedlock_releaseexclusive (&network_context->lock_checker);
 
 					_r_obj_dereference (ptr_network);
 
@@ -291,7 +272,9 @@ VOID _app_network_generatetable (
 				_r_obj_addhashtablepointer (network_context->network_ptr, network_hash, ptr_network);
 				_r_queuedlock_releaseexclusive (&network_context->lock_network);
 
-				_app_network_addcheckeritem (network_context, network_hash, ptr_network->path);
+				_r_queuedlock_acquireexclusive (&network_context->lock_checker);
+				_r_obj_addhashtablepointer (network_context->checker_ptr, network_hash, _r_obj_reference (ptr_network->path));
+				_r_queuedlock_releaseexclusive (&network_context->lock_checker);
 			}
 		}
 	}
@@ -333,7 +316,9 @@ VOID _app_network_generatetable (
 				{
 					_app_network_update_tcp6_stats (ptr_network, &tcp6_table->table[i]);
 
-					_app_network_addcheckeritem (network_context, network_hash, ptr_network->path);
+					_r_queuedlock_acquireexclusive (&network_context->lock_checker);
+					_r_obj_addhashtablepointer (network_context->checker_ptr, network_hash, NULL);
+					_r_queuedlock_releaseexclusive (&network_context->lock_checker);
 
 					_r_obj_dereference (ptr_network);
 
@@ -371,7 +356,9 @@ VOID _app_network_generatetable (
 				_r_obj_addhashtablepointer (network_context->network_ptr, network_hash, ptr_network);
 				_r_queuedlock_releaseexclusive (&network_context->lock_network);
 
-				_app_network_addcheckeritem (network_context, network_hash, ptr_network->path);
+				_r_queuedlock_acquireexclusive (&network_context->lock_checker);
+				_r_obj_addhashtablepointer (network_context->checker_ptr, network_hash, _r_obj_reference (ptr_network->path));
+				_r_queuedlock_releaseexclusive (&network_context->lock_checker);
 			}
 		}
 	}
@@ -402,13 +389,11 @@ VOID _app_network_generatetable (
 
 				network_hash = _app_network_gethash (AF_INET, udp4_table->table[i].dwOwningPid, NULL, 0, &local_addr, udp4_table->table[i].dwLocalPort, IPPROTO_UDP, 0);
 
-				ptr_network = _app_network_getitem (network_hash);
-
-				if (ptr_network)
+				if (_app_network_isitemfound (network_hash))
 				{
-					_app_network_addcheckeritem (network_context, network_hash, ptr_network->path);
-
-					_r_obj_dereference (ptr_network);
+					_r_queuedlock_acquireexclusive (&network_context->lock_checker);
+					_r_obj_addhashtablepointer (network_context->checker_ptr, network_hash, NULL);
+					_r_queuedlock_releaseexclusive (&network_context->lock_checker);
 
 					continue;
 				}
@@ -435,7 +420,9 @@ VOID _app_network_generatetable (
 				_r_obj_addhashtablepointer (network_context->network_ptr, network_hash, ptr_network);
 				_r_queuedlock_releaseexclusive (&network_context->lock_network);
 
-				_app_network_addcheckeritem (network_context, network_hash, ptr_network->path);
+				_r_queuedlock_acquireexclusive (&network_context->lock_checker);
+				_r_obj_addhashtablepointer (network_context->checker_ptr, network_hash, _r_obj_reference (ptr_network->path));
+				_r_queuedlock_releaseexclusive (&network_context->lock_checker);
 			}
 		}
 	}
@@ -461,13 +448,11 @@ VOID _app_network_generatetable (
 			{
 				network_hash = _app_network_gethash (AF_INET6, udp6_table->table[i].dwOwningPid, NULL, 0, udp6_table->table[i].ucLocalAddr, udp6_table->table[i].dwLocalPort, IPPROTO_UDP, 0);
 
-				ptr_network = _app_network_getitem (network_hash);
-
-				if (ptr_network)
+				if (_app_network_isitemfound (network_hash))
 				{
-					_app_network_addcheckeritem (network_context, network_hash, ptr_network->path);
-
-					_r_obj_dereference (ptr_network);
+					_r_queuedlock_acquireexclusive (&network_context->lock_checker);
+					_r_obj_addhashtablepointer (network_context->checker_ptr, network_hash, NULL);
+					_r_queuedlock_releaseexclusive (&network_context->lock_checker);
 
 					continue;
 				}
@@ -494,7 +479,9 @@ VOID _app_network_generatetable (
 				_r_obj_addhashtablepointer (network_context->network_ptr, network_hash, ptr_network);
 				_r_queuedlock_releaseexclusive (&network_context->lock_network);
 
-				_app_network_addcheckeritem (network_context, network_hash, ptr_network->path);
+				_r_queuedlock_acquireexclusive (&network_context->lock_checker);
+				_r_obj_addhashtablepointer (network_context->checker_ptr, network_hash, _r_obj_reference (ptr_network->path));
+				_r_queuedlock_releaseexclusive (&network_context->lock_checker);
 			}
 		}
 	}
