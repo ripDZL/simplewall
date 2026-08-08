@@ -8,7 +8,7 @@
 - [x] Validate the sandbox SID across cmd, PowerShell, Python, and Node.
 - [x] Fix tab-selection compatibility for saved/current Connections tab visibility.
 - [ ] Validate the sandbox SID through diagnostic output and user confirmation.
-- [ ] Runtime-test the Connections tab with the new beta build.
+- [ ] Runtime-test Connections and Log tabs with the append-sentinel compatibility beta.
 - [ ] Collect `%USERPROFILE%\simplewall-network-diagnostic.log` from the `-networkdiagnostic` beta launcher if Connections remains empty.
-- [ ] Runtime-test the modified diagnostic build after the installed simplewall instance is stopped.
+- [x] Collect `%USERPROFILE%\simplewall-network-diagnostic.log` from the `-networkdiagnostic` beta launcher.
 - [ ] Add disabled-by-default SID-mode UI and persistence only after SID confirmation.

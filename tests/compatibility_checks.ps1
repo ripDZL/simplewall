@@ -4,6 +4,7 @@ $repoRoot = Split-Path -Parent $PSScriptRoot
 $compatSource = Get-Content -LiteralPath (Join-Path $repoRoot 'src\routine_compat.h') -Raw
 $controlsSource = Get-Content -LiteralPath (Join-Path $repoRoot 'src\controls.c') -Raw
 $helperSource = Get-Content -LiteralPath (Join-Path $repoRoot 'src\helper.c') -Raw
+$listviewSource = Get-Content -LiteralPath (Join-Path $repoRoot 'src\listview.c') -Raw
 
 function Assert-Contains {
     param(
@@ -33,5 +34,9 @@ Assert-Contains $compatSource '#define _r_res_queryversion\(out_buffer, ver_bloc
 Assert-Contains $helperSource '_r_res_queryversion \(\(PVOID_PTR\)&ver_info, ver_block\.buffer\)' 'simplewall source still uses the upstream _r_res_queryversion call shape.'
 Assert-NotContains $compatSource '#define _r_tab_selectitem' 'Compatibility shim must not bypass routine tab-change notifications.'
 Assert-Contains $controlsSource '_r_tab_selectitem \(hwnd, IDC_TAB, i\);\s+return TRUE;' 'Tab selection must call the routine helper that sends TCN_SELCHANGING/TCN_SELCHANGE notifications.'
+Assert-Contains $listviewSource '_r_listview_additem \(hwnd, IDC_NETWORK, INT_ERROR' 'Network rows depend on the upstream append sentinel.'
+Assert-Contains $compatSource 'FORCEINLINE INT _r_compat_listview_additem' 'Compatibility shim must adapt the upstream append sentinel.'
+Assert-Contains $compatSource 'item_id == INT_ERROR' 'Compatibility shim must detect the upstream append sentinel.'
+Assert-Contains $compatSource '#define _r_listview_additem _r_compat_listview_additem' 'Compatibility shim must route list insertions through the append adapter.'
 
 Write-Output 'Compatibility static checks passed.'

@@ -219,6 +219,24 @@ FORCEINLINE ULONG _r_compat_str_gethash_raw (
 #define _r_filedialog_setpath(file_dialog, path) \
 	_r_filedialog_setpath ((file_dialog), (path)->buffer)
 
+FORCEINLINE INT _r_compat_listview_additem (
+	_In_ HWND hwnd,
+	_In_opt_ INT ctrl_id,
+	_In_ INT item_id,
+	_In_opt_ LPWSTR string,
+	_In_ INT image_id,
+	_In_ INT group_id,
+	_In_ LPARAM lparam
+)
+{
+	if (item_id == INT_ERROR)
+		item_id = _r_listview_getitemcount (hwnd, ctrl_id);
+
+	return _r_listview_additem (hwnd, ctrl_id, item_id, string, image_id, group_id, lparam);
+}
+
+#define _r_listview_additem _r_compat_listview_additem
+
 #define _r_listview_setstyle(hwnd, ctrl_id, ex_style, is_groupview) \
 	_r_listview_setstyle ((hwnd), (ctrl_id), (ULONG)(ex_style), (is_groupview))
 

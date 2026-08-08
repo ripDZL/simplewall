@@ -32,3 +32,6 @@
 - 2026-08-08: user confirmed Connections remains empty in `beta-92f2c69f`; upstream binary still detects connections.
 - 2026-08-08: inspected active config; prior network diagnostic INI opt-in was absent, so no log could have been created.
 - 2026-08-08: added explicit `-networkdiagnostic` launch opt-in and release launcher to remove manual INI setup from the feedback loop.
+- 2026-08-08: diagnostic log proved monitor startup, TCP/UDP table reads, process resolution, and row queueing all work; 228 initial list insert calls left the control count at zero.
+- 2026-08-08: root cause is public `routine` list insertion treating upstream `INT_ERROR` append sentinel as an invalid Windows index.
+- 2026-08-08: added a UI-only adapter that maps the sentinel to the current list count; static checks and Release x64/ARM64 builds pass.

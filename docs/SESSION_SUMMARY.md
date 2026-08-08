@@ -26,3 +26,5 @@
 - Next milestone requires user SID confirmation, then a disabled-by-default SID-mode proof.
 - User reconfirmed the beta Connections tab is empty while upstream works; no network diagnostic log existed because the active configuration had no diagnostic opt-in key.
 - Added a one-run `-networkdiagnostic` launcher so the next beta can collect monitor evidence without editing the shared INI file.
+- Received the network diagnostic log: table APIs succeeded, 228 rows were queued, and every list insertion left `IDC_NETWORK` at zero rows.
+- Root cause: public `routine` does not interpret the upstream `INT_ERROR` list-view append sentinel. Added a narrow UI compatibility adapter; runtime proof remains open.
