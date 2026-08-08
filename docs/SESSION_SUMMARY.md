@@ -24,3 +24,5 @@
 - OpenAI-signed `codex-command-runner-0.144.2.exe` is present in the observed parent chain.
 - Installed upstream simplewall is running; live fork audit capture was not attempted.
 - Next milestone requires user SID confirmation, then a disabled-by-default SID-mode proof.
+- User reconfirmed the beta Connections tab is empty while upstream works; no network diagnostic log existed because the active configuration had no diagnostic opt-in key.
+- Added a one-run `-networkdiagnostic` launcher so the next beta can collect monitor evidence without editing the shared INI file.

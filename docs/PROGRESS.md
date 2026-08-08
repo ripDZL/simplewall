@@ -29,3 +29,6 @@
 - 2026-07-29: user confirmed the empty Connections tab also reproduced on the beta before switching back to upstream.
 - 2026-07-29: added disabled-by-default network-monitor diagnostics for thread start, Windows network table statuses/counts, path-resolution drops, and listview insert counts.
 - 2026-07-29: compatibility/Codex/network diagnostic static checks and Release x64/ARM64 builds pass.
+- 2026-08-08: user confirmed Connections remains empty in `beta-92f2c69f`; upstream binary still detects connections.
+- 2026-08-08: inspected active config; prior network diagnostic INI opt-in was absent, so no log could have been created.
+- 2026-08-08: added explicit `-networkdiagnostic` launch opt-in and release launcher to remove manual INI setup from the feedback loop.

@@ -10,3 +10,4 @@
 - Diagnostic records require explicit SID/root association and never create permit filters.
 - Enforcement remains blocked pending user confirmation of the discovered SID.
 - Network-monitor diagnostic logging is disabled by default and only records API/listview counts and status codes.
+- `-networkdiagnostic` is an explicit one-run opt-in that bypasses manual INI edits; it creates no filters or policy changes.

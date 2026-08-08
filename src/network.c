@@ -4,6 +4,7 @@
 #include "global.h"
 
 #define NETWORK_DIAGNOSTIC_PATH_DEFAULT L"%USERPROFILE%\\simplewall-network-diagnostic.log"
+#define NETWORK_DIAGNOSTIC_CMDLINE_SWITCH L"networkdiagnostic"
 #define NETWORK_DIAGNOSTIC_STATUS_NOT_CALLED ((ULONG)0xFFFFFFFF)
 
 typedef struct _ITEM_NETWORK_DIAGNOSTIC_STAGE
@@ -19,7 +20,7 @@ typedef struct _ITEM_NETWORK_DIAGNOSTIC_STAGE
 
 static BOOLEAN _app_network_isdiagnosticenabled ()
 {
-	return _r_config_getboolean (L"IsNetworkDiagnosticEnabled", FALSE, NULL);
+	return _r_config_getboolean (L"IsNetworkDiagnosticEnabled", FALSE, NULL) || _r_sys_getopt (_r_sys_getcommandline (), NETWORK_DIAGNOSTIC_CMDLINE_SWITCH, NULL);
 }
 
 static VOID _app_network_writediagnostic (
