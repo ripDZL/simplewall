@@ -27,4 +27,5 @@
 - User reconfirmed the beta Connections tab is empty while upstream works; no network diagnostic log existed because the active configuration had no diagnostic opt-in key.
 - Added a one-run `-networkdiagnostic` launcher so the next beta can collect monitor evidence without editing the shared INI file.
 - Received the network diagnostic log: table APIs succeeded, 228 rows were queued, and every list insertion left `IDC_NETWORK` at zero rows.
-- Root cause: public `routine` does not interpret the upstream `INT_ERROR` list-view append sentinel. Added a narrow UI compatibility adapter; runtime proof remains open.
+- Root cause: public `routine` does not interpret the upstream `INT_ERROR` list-view append sentinel. Added a narrow UI compatibility adapter.
+- Follow-up beta log confirmed list-view runtime proof: the initial scan inserted 228 rows and subsequent cycles maintained the active connection list.
