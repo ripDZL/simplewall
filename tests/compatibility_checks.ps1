@@ -5,6 +5,7 @@ $compatSource = Get-Content -LiteralPath (Join-Path $repoRoot 'src\routine_compa
 $controlsSource = Get-Content -LiteralPath (Join-Path $repoRoot 'src\controls.c') -Raw
 $helperSource = Get-Content -LiteralPath (Join-Path $repoRoot 'src\helper.c') -Raw
 $listviewSource = Get-Content -LiteralPath (Join-Path $repoRoot 'src\listview.c') -Raw
+$routineSource = Get-Content -LiteralPath (Join-Path $repoRoot 'third_party\routine\src\routine.c') -Raw
 
 function Assert-Contains {
     param(
@@ -38,5 +39,10 @@ Assert-Contains $listviewSource '_r_listview_additem \(hwnd, IDC_NETWORK, INT_ER
 Assert-Contains $compatSource 'FORCEINLINE INT _r_compat_listview_additem' 'Compatibility shim must adapt the upstream append sentinel.'
 Assert-Contains $compatSource 'item_id == INT_ERROR' 'Compatibility shim must detect the upstream append sentinel.'
 Assert-Contains $compatSource '#define _r_listview_additem _r_compat_listview_additem' 'Compatibility shim must route list insertions through the append adapter.'
+Assert-Contains $routineSource 'if \(image_id != I_IMAGENONE\)' 'Public routine toolbar updates must retain their current image-selection behavior.'
+Assert-Contains $compatSource 'FORCEINLINE BOOLEAN _r_compat_toolbar_setbutton' 'Compatibility shim must adapt the upstream toolbar image sentinel.'
+Assert-Contains $compatSource 'if \(image_id == I_DEFAULT\)' 'Toolbar adapter must preserve an existing icon when upstream passes I_DEFAULT.'
+Assert-Contains $compatSource 'image_id = I_IMAGENONE;' 'Toolbar adapter must translate I_DEFAULT to the public routine no-image-update sentinel.'
+Assert-Contains $compatSource '#define _r_toolbar_setbutton _r_compat_toolbar_setbutton' 'Compatibility shim must route toolbar updates through the image-sentinel adapter.'
 
 Write-Output 'Compatibility static checks passed.'

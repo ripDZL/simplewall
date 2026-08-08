@@ -36,3 +36,5 @@
 - 2026-08-08: root cause is public `routine` list insertion treating upstream `INT_ERROR` append sentinel as an invalid Windows index.
 - 2026-08-08: added a UI-only adapter that maps the sentinel to the current list count; static checks and Release x64/ARM64 builds pass.
 - 2026-08-08: user diagnostic run of `beta-c5aa8f1b` confirmed the fix: initial list insertion produced 228 rows and subsequent monitor cycles maintained roughly 225-232 active rows.
+- 2026-08-08: traced missing toolbar glyphs to public `routine` treating the upstream `I_DEFAULT` preserve-image sentinel as image index `-8` during localization.
+- 2026-08-08: added a UI-only toolbar adapter that maps `I_DEFAULT` to `I_IMAGENONE`; compatibility/Codex/network static checks and Release x64/ARM64 builds pass.

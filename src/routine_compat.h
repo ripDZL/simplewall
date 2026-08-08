@@ -197,8 +197,25 @@ FORCEINLINE ULONG _r_compat_str_gethash_raw (
 #define _r_toolbar_getidealsize(hwnd, ctrl_id, is_vertical, out_buffer) \
 	((BOOLEAN)!!_r_wnd_sendmessage ((hwnd), (ctrl_id), TB_GETIDEALSIZE, (is_vertical), (LPARAM)(out_buffer)))
 
-#define _r_toolbar_setbutton(hwnd, ctrl_id, command_id, string, style, state, image) \
-	_r_toolbar_setbutton ((hwnd), (ctrl_id), (command_id), (LPWSTR)(string), (style), (state), (image))
+FORCEINLINE BOOLEAN _r_compat_toolbar_setbutton (
+	_In_ HWND hwnd,
+	_In_opt_ INT ctrl_id,
+	_In_ UINT_PTR command_id,
+	_In_opt_ LPCWSTR string,
+	_In_opt_ INT style,
+	_In_opt_ INT state,
+	_In_ INT image_id
+)
+{
+	// Upstream uses I_DEFAULT to preserve an existing toolbar glyph. The
+	// public routine uses I_IMAGENONE for that behavior.
+	if (image_id == I_DEFAULT)
+		image_id = I_IMAGENONE;
+
+	return _r_toolbar_setbutton (hwnd, ctrl_id, command_id, (LPWSTR)string, style, state, image_id);
+}
+
+#define _r_toolbar_setbutton _r_compat_toolbar_setbutton
 
 #define _r_sys_settimer(hwnd, timer_id, timeout, callback) \
 	SetTimer ((hwnd), (timer_id), (timeout), (callback))
