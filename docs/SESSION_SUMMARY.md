@@ -31,3 +31,4 @@
 - Follow-up beta log confirmed list-view runtime proof: the initial scan inserted 228 rows and subsequent cycles maintained the active connection list.
 - User then reported missing toolbar glyphs. Root cause: public `routine` applies upstream `I_DEFAULT` as image index `-8` during toolbar localization instead of preserving the previously assigned image.
 - Added a narrow UI-only adapter that translates `I_DEFAULT` to the public `I_IMAGENONE` no-image-update sentinel. All static checks and x64/ARM64 builds pass; user visual confirmation remains open.
+- Published `beta-b31ce949` with x64/ARM64 archives and SHA-256 manifest; release target is the `beta` branch.
