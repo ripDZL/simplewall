@@ -39,3 +39,5 @@
 - 2026-08-08: traced missing toolbar glyphs to public `routine` treating the upstream `I_DEFAULT` preserve-image sentinel as image index `-8` during localization.
 - 2026-08-08: added a UI-only toolbar adapter that maps `I_DEFAULT` to `I_IMAGENONE`; compatibility/Codex/network static checks and Release x64/ARM64 builds pass.
 - 2026-08-08: published and verified prerelease `beta-b31ce949` against the `beta` branch with x64/ARM64 archives and SHA-256 manifest.
+- 2026-08-08: repeated toolbar screenshot was traced to the installed `C:\Program Files\simplewall\simplewall.exe`, not the beta. The app's shared `simplewall` mutex activates the existing copy instead of starting a side-by-side beta.
+- 2026-08-08: isolated probes verified the public resource loader loads all 11 toolbar PNGs at indexes 0-10, the image list attaches to a toolbar, and a text/style update that omits `TBIF_IMAGE` preserves the assigned glyph.

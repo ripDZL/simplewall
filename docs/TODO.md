@@ -13,5 +13,5 @@
 - [ ] Collect `%USERPROFILE%\simplewall-network-diagnostic.log` from the `-networkdiagnostic` beta launcher if Connections remains empty.
 - [x] Collect `%USERPROFILE%\simplewall-network-diagnostic.log` from the `-networkdiagnostic` beta launcher.
 - [x] Restore toolbar glyphs after the public `routine` image-sentinel incompatibility.
-- [ ] Obtain user visual confirmation for the toolbar-glyph compatibility beta.
+- [ ] Obtain user visual confirmation for the toolbar-glyph compatibility beta, with the running executable confirmed outside `C:\Program Files\simplewall`.
 - [ ] Add disabled-by-default SID-mode UI and persistence only after SID confirmation.

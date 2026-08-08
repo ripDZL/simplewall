@@ -12,5 +12,6 @@
 - Network-monitor diagnostic logging is disabled by default and only records API/listview counts and status codes.
 - `-networkdiagnostic` is an explicit one-run opt-in that bypasses manual INI edits; it creates no filters or policy changes.
 - Connections root cause: the public `routine` forwards upstream `INT_ERROR` append sentinels to `LVM_INSERTITEM`; the compatibility layer maps only that sentinel to the current item count.
-- Toolbar glyph root cause: the public `routine` treats upstream `I_DEFAULT` as an image index during toolbar updates; the compatibility layer maps it to the public no-image-update sentinel.
+- Toolbar compatibility fix: the public `routine` treats upstream `I_DEFAULT` as an image index during toolbar updates; the compatibility layer maps it to the public no-image-update sentinel.
+- Beta visual validation requires all existing `simplewall.exe` processes to exit first: routine uses a shared `simplewall` mutex and otherwise activates the already-running copy.
 - Current toolbar-fix prerelease: `beta-b31ce949` (x64 and ARM64 archives, SHA-256 manifest published).
